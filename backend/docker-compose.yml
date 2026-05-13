@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: student_management
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    container_name: backend_service
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
