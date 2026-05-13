@@ -1,13 +1,21 @@
-import axios from "../api/axios.customize";
+import instance from "../api/axios.customize";
 
 export const getStudentsApi = () => {
-  return axios.get("/students");
+  return instance.get("/students");
 };
 
 export const createStudentApi = (data) => {
-  return axios.post("/students", data);
+  return instance.post("/students", data);
+};
+
+export const updateStudentApi = (id, data) => {
+  return instance.put(`/students/${id}`, data);
 };
 
 export const deleteStudentApi = (id) => {
-  return axios.delete(`/students/${id}`);
+  return instance.delete(`/students/${id}`);
+};
+
+export const getOneStudentApi = (id) => {
+  return instance.get(`/students/${id}`);
 };

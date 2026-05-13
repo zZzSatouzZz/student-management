@@ -18,14 +18,26 @@ const getStudentById = async (id) => {
 };
 
 const createStudent = async (body) => {
-  const { name, email, age, classroom } = body;
+  const {
+    name,
+    email,
+    age,
+    classroom,
+    status,
+  } = body;
 
   const [result] = await pool.query(
     `
-    INSERT INTO students(name, email, age, classroom)
-    VALUES (?, ?, ?, ?)
+    INSERT INTO students(name, email, age, classroom, status)
+    VALUES (?, ?, ?, ?, ?)
     `,
-    [name, email, age, classroom]
+    [
+      name,
+      email,
+      age,
+      classroom,
+      status,
+    ]
   );
 
   return {
@@ -35,15 +47,28 @@ const createStudent = async (body) => {
 };
 
 const updateStudent = async (id, body) => {
-  const { name, email, age, classroom } = body;
+  const {
+  name,
+  email,
+  age,
+  classroom,
+  status,
+} = body;
 
   await pool.query(
     `
     UPDATE students
-    SET name = ?, email = ?, age = ?, classroom = ?
+   SET name = ?, email = ?, age = ?, classroom = ?, status = ?
     WHERE id = ?
     `,
-    [name, email, age, classroom, id]
+    [
+  name,
+  email,
+  age,
+  classroom,
+  status,
+  id,
+]
   );
 
   return {
